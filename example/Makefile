@@ -1,4 +1,5 @@
-OBJ=test.o
+OBJ=ip_api.o test.o
+OBJ_RAW=ip_api.o test_raw.o
 
 include ../iproute2/config.mk
 
@@ -24,6 +25,10 @@ TARGETS=demo
 
 all: $(TARGETS)
 
-demo: $(OBJ)
+test: $(OBJ)
+	cp -f $(IPROUTE2_PREFIX)/lib/libiproute2.so.$(VER) ./
+	$(QUIET_LINK)$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
+
+test_raw: $(OBJ_RAW)
 	cp -f $(IPROUTE2_PREFIX)/lib/libiproute2.so.$(VER) ./
 	$(QUIET_LINK)$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@

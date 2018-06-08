@@ -6,6 +6,14 @@
  *  iproute2 functionality.
  *
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int main_entry_point(int argc, char **argv);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
