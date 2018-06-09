@@ -46,15 +46,23 @@ int main_entry_point3(int argc, const char* argv[], char* buffer, size_t buffer_
          break;
       }
 
-      int code_main = main_entry_point2(argc, argv);   
-      if (code_main)
-      {
-         perror("iproute2 core error");
-         code_rtn = code_main;
-         break;
-      }
+      do {
+         int code_main = main_entry_point2(argc, argv);   
+         if (code_main)
+         {
+            perror("iproute2 core error");
+            code_rtn = code_main;
+            break;
+         }
   
-      read(pipefd[0], buffer, buffer_size);
+         size_t num_read = read(pipefd[0], buffer, buffer_size);
+         if (num_read == buffer_size)
+         {
+            perror("buffer is too small, omit further parse");
+            code_rtn = -3;
+            break;
+         }
+      }while(0);
       dup2(saved_stdout, STDOUT_FILENO);
    }while(0);
 
