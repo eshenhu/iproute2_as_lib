@@ -12,6 +12,7 @@ HOSTCC ?= $(CC)
 DEFINES += -D_GNU_SOURCE
 # Turn on transparent support for LFS
 DEFINES += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+
 CCOPTS = -O2 -std=c++11
 WFLAGS := -Wall 
 WFLAGS += -Wmissing-declarations -Wformat=2
