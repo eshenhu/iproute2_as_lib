@@ -1,6 +1,6 @@
-##use iproute2 as library
+# Use iproute2 as library
 
-###Why create this project
+## Why create this project
 
 1. There is no libraries to obtain the network information/statistics/... data from interfaces. 
    You need re-invent the wheel to write the code to get such information with socket interface. maybe you cost much time to write the code to meet the requirement.  
@@ -12,13 +12,11 @@
    
 4. Have fun!
 
-
-###How to compile this
+## How to compile this
 
 1. libiproute2.x.x.x
    
    x.x.x is the version number of library, which is the same with the lastest tag of offical iproute2.
-
    - make all (The library libiproute2.x.x.x was located in the iproute2/lib/, the header file <ip.h> was located in the iproute2/include)
    
 2. iproute2 "Header files" and "Library file"
@@ -27,9 +25,8 @@
 3. Example
    - In the example folder, I write some user cases how to extract the information from the dump string. and you can make what you want with the api.
    
-   
-Shengli Hu
-eshenhu@gmail.com
+## Contract    
+eshenhu x gmail.com
 
 
 
