@@ -1,12 +1,15 @@
 OBJ_BIN=ip_bin.o
 
+SRC_LIB=ip_api.c
+OBJ_LIB=ip_api.o
+
 include ../iproute2/config.mk
 
 IPROUTE2_PREFIX := ../iproute2
 
 VER = $(shell cd $(IPROUTE2_PREFIX) && git describe --abbrev=0 --tags | cut -c2-)
 
-CC := gcc
+CC := g++
 HOSTCC ?= $(CC)
 DEFINES += -D_GNU_SOURCE
 # Turn on transparent support for LFS
@@ -29,6 +32,12 @@ ip: $(OBJ_BIN)
 	$(QUIET_LINK)$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 	strip $@
 
+lib: $(OBJ_LIB)
+	$(CC) -shared -fPIC -o libiproute2_api.so.$(VER) $(OBJ_LIB) -lc
+	strip libiproute2_api.so.$(VER) 
+
 clean:
 	rm -rf $(TARGETS)
 	rm -rf *.o
+	rm -rf libiproute2.so.$(VER)
+	rm -rf libiproute2_api.so.$(VER)
